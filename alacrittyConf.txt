@@ -1,0 +1,98 @@
+//this is for windows 
+
+
+[terminal.shell]
+program = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+args = ["-NoLogo"]
+
+[window]
+startup_mode = "Windowed"
+decorations = "full"
+opacity = 1
+
+[font.normal]
+family = "Hack Nerd Font"
+style = "Bold"
+
+[general]
+working_directory = "C:\\Users\\Owner"
+
+[terminal]
+
+[font]
+size = 11
+
+
+# Colors (Solarized Osaka)
+# Source https://github.com/craftzdog/solarized-osaka.nvim
+
+# Default colors
+[colors.primary]
+background = '#001a1d'
+foreground = '#839496'
+
+# Normal colors
+[colors.normal]
+black   = '#073642'
+red     = '#dc322f'
+green   = '#859900'
+yellow  = '#b58900'
+blue    = '#268bd2'
+magenta = '#d33682'
+cyan    = '#2aa198'
+white   = '#eee8d5'
+
+# Bright colors
+[colors.bright]
+black   = '#4c4c4c'
+red     = '#cb4b16'
+green   = '#586e75'
+yellow  = '#657b83'
+blue    = '#839496'
+magenta = '#6c71c4'
+cyan    = '#93a1a1'
+white   = '#fdf6e3'
+
+
+
+# this bottom on is for linux
+
+[window]
+opacity = 1 
+
+[font]
+size = 13.0
+
+[font.normal]
+family= "Hack Nerd Font"
+style= "Bold"
+
+[colors.primary]
+background = "#1e1e1e"
+
+[colors.normal]
+black   = "#000000"
+red     = "#d6181b"
+green   = "#6A9955"
+yellow  = "#e4d201"
+blue    = "#569cd6"
+magenta = "#bc3fbc"
+cyan    = "#4EC9B0"
+white   = "#e5e5e5"
+
+[colors.bright]
+black   = "#666666"
+red     = "#ce9178"
+green   = "#b5cea8"
+yellow  = "#DCDCAA"
+blue    = "#9cdcfe"
+magenta = "#d670d6"
+cyan    = "#9cdcfe"
+white   = "#e5e5e5"
+
+[scrolling]
+history = 1000
+multiplier = 3
+
+
+
