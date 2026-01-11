@@ -7,6 +7,7 @@
 packages=(
   neovim 
   vim 
+  ufw
   base-devel
   postgresql
   docker
