@@ -5,13 +5,14 @@
 # still need to perfect this script but at a good stopping point
 
 packages=(
+  neovim 
+  vim 
+  base-devel
   postgresql
   docker
   git 
   openssh 
   fastfetch 
-  neovim 
-  vim 
   xclip 
   ripgrep 
   lazygit 
