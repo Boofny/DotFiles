@@ -18,11 +18,11 @@ while getopts 'yp' flag; do # check flag status
 done
 
 if $p_flag; then 
-  choice=$( fd . ~/gitThings/ --type d --exclude node_modules | fzf ) || exit 1
+  choice=$( fd . ~/gitThings/ --type d --exclude node_modules | fzf ) || exit 0
   cd $choice || exit 1
   file=$( fzf --preview 'bat --style=numbers --color=always --line-range :500 {}') || exit 1
 
-  sessionName="TmuxSession"
+  sessionName="dev"
   tmux new-session -A -d -s "$sessionName" -c "$choice" # makes tmux session call dev 
   tmux send-keys -t "$sessionName" "nvim \"$file\"" C-m # runs command in tmux session windows end C-m enters it 
   tmux attach -t "$sessionName" # now we attach into the made tmux session
@@ -30,11 +30,11 @@ if $p_flag; then
 fi
 
 if $y_flag; then # if y flag (the yes) flag is used bypass comfirmation option
-  choice=$( fd . ~/gitThings/ --type d --exclude node_modules | fzf ) || exit 1
+  choice=$( fd . ~/gitThings/ --type d --exclude node_modules | fzf ) || exit 0
   cd $choice && tmux
   exit 0
 else
-  choice=$( fd . ~/gitThings/ --type d --exclude node_modules | fzf )
+  choice=$( fd . ~/gitThings/ --type d --exclude node_modules | fzf ) || exit 0
 
   printf "%b" "Make tmux session in (${GREEN}$choice${NC})? [y/n]"
   read option
