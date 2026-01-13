@@ -1,36 +1,52 @@
 #!/bin/bash
 
+# also need to make quiting better 
+
 RED='\e[0;31m'
 GREEN='\e[0;32m'
 NC='\e[0m' # No Color Reset
 
-y_flag=false
+y_flag=false # --yes flag
+p_flag=false # --preview flag 
 
-while getopts 'y' flag; do # check flag status
+while getopts 'yp' flag; do # check flag status
   case "${flag}" in
     y) y_flag=true;;
+    p) p_flag=true;;
     *) exit 1
   esac
 done
 
+if $p_flag; then 
+  choice=$( fd . ~/gitThings/ --type d --exclude node_modules | fzf ) || exit 1
+  cd $choice || exit 1
+  file=$( fzf --preview 'bat --style=numbers --color=always --line-range :500 {}') || exit 1
+
+  sessionName="TmuxSession"
+  tmux new-session -A -d -s "$sessionName" -c "$choice" # makes tmux session call dev 
+  tmux send-keys -t "$sessionName" "nvim \"$file\"" C-m # runs command in tmux session windows end C-m enters it 
+  tmux attach -t "$sessionName" # now we attach into the made tmux session
+  exit 0
+fi
+
 if $y_flag; then # if y flag (the yes) flag is used bypass comfirmation option
-  choice=$( fd . ~/gitThings/ --type d --exclude node_modules | fzf )
+  choice=$( fd . ~/gitThings/ --type d --exclude node_modules | fzf ) || exit 1
   cd $choice && tmux
+  exit 0
 else
-  command
   choice=$( fd . ~/gitThings/ --type d --exclude node_modules | fzf )
 
-  # read -p "${RED}Make tmux session in ($choice)? [y\n] ${NC}" option
   printf "%b" "Make tmux session in (${GREEN}$choice${NC})? [y/n]"
   read option
 
   if [[ $option == "y" || $option == "" ]]; then
-   cd $choice && tmux
+    cd $choice && tmux
+    exit 0
   fi
 
   if [[ $option == "n" ]]; then
     echo "Exiting..."
-    exit 1 
+    exit 0
   fi
 
   # TODO: if no go back to fzf and loop until YES or exit
@@ -39,3 +55,4 @@ else
     exit 1
   fi
 fi
+
