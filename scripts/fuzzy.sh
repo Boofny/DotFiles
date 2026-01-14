@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# also need to make quiting better 
-
 RED='\e[0;31m'
 GREEN='\e[0;32m'
 NC='\e[0m' # No Color Reset
 
 y_flag=false # --yes flag
-p_flag=false # --preview flag 
+p_flag=false # --preview flag open files 
 
 while getopts 'yp' flag; do # check flag status
   case "${flag}" in
@@ -20,9 +18,9 @@ done
 if $p_flag; then 
   choice=$( fd . ~/gitThings/ --type d --exclude node_modules | fzf ) || exit 0
   cd $choice || exit 1
+  sessionName=$(basename $PWD)
   file=$( fzf --preview 'bat --style=numbers --color=always --line-range :500 {}') || exit 1
 
-  sessionName="dev"
   tmux new-session -A -d -s "$sessionName" -c "$choice" # makes tmux session call dev 
   tmux send-keys -t "$sessionName" "nvim \"$file\"" C-m # runs command in tmux session windows end C-m enters it 
   tmux attach -t "$sessionName" # now we attach into the made tmux session
@@ -31,8 +29,12 @@ fi
 
 if $y_flag; then # if y flag (the yes) flag is used bypass comfirmation option
   choice=$( fd . ~/gitThings/ --type d --exclude node_modules | fzf ) || exit 0
-  cd $choice && tmux
+  cd $choice || exit 1
+  sessionName=$(basename $PWD)
+  tmux new-session -A -d -s "$sessionName" -c "$choice" # makes tmux session call dev 
+  tmux attach -t "$sessionName" # now we attach into the made tmux session
   exit 0
+
 else
   choice=$( fd . ~/gitThings/ --type d --exclude node_modules | fzf ) || exit 0
 
@@ -40,7 +42,10 @@ else
   read option
 
   if [[ $option == "y" || $option == "" ]]; then
-    cd $choice && tmux
+    cd $choice || exit 1
+    sessionName=$(basename $PWD)
+    tmux new-session -A -d -s "$sessionName" -c "$choice" # makes tmux session call dev 
+    tmux attach -t "$sessionName" # now we attach into the made tmux session
     exit 0
   fi
 
@@ -54,5 +59,6 @@ else
     echo "Not an option"
     exit 1
   fi
+
 fi
 
