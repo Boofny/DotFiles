@@ -1,9 +1,16 @@
+
+---- updated one for windows wsl and will get rid of plugins like the linux one but also need to update the linux one
+
 set -g default-terminal "screen-256color"
 set -g terminal-overrides "xterm-256color:Tc"
 
-set -g prefix C-Space
-unbind C-b
-bind C-Space send-prefix
+# set -g prefix C-Space
+# unbind C-b
+# bind C-Space send-prefix
+
+set-option -g prefix C-space
+
+set-option -g prefix2 M-q
 set -g mouse on
 
 set-option -g status-position top
@@ -33,19 +40,14 @@ set -g window-status-current-format "#[fg=black,bg=colour217] #I (#{pane_current
 
 set -g status-right-length 100
 set -g status-left-length 100
-set -g status-left "  "
-# set -g status-right '#[bg=colour217]%H:%M '
-set -g status-right '%H:%M '
+set -g status-left "[#S  ]"
+set -g status-right '%H:%M |'
 set -g status-justify centre
-# set -g status-left "#[bg=black,fg=white] #{b:pane_current_path} #[default]"
-# set -g status-right "#{E:@catppuccin_status_application}"
-set -ag status-right "#{E:@catppuccin_status_session}"
-set -ag status-right "#{E:@catppuccin_status_uptime}"
+set -ag status-right " #{?client_prefix, 󰛨 , 󰌶 }"
+set -ag status-right " | #(uptime -p)"
+# set -ag status-right "#{E:@catppuccin_status_uptime}"
 
 run '~/.tmux/plugins/tpm/tpm'
-
-
-
 
 
 
