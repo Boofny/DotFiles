@@ -1,5 +1,4 @@
-
----- updated one for windows wsl and will get rid of plugins like the linux one but also need to update the linux one
+----------- this one is for wsl and none off these now use plugins 
 
 set -g default-terminal "screen-256color"
 set -g terminal-overrides "xterm-256color:Tc"
@@ -7,6 +6,7 @@ set -g terminal-overrides "xterm-256color:Tc"
 # set -g prefix C-Space
 # unbind C-b
 # bind C-Space send-prefix
+set -g status-fg "#ffffff"
 
 set-option -g prefix C-space
 
@@ -15,100 +15,26 @@ set -g mouse on
 
 set-option -g status-position top
 
-set -g @plugin 'tmux-plugins/tpm'
-
 bind-key h select-pane -L
 bind-key j select-pane -D
 bind-key k select-pane -U
 bind-key l select-pane -R
 
-set -g @catppuccin_flavor "mocha"
-set -g @catppuccin_window_status_style "slanted"
-
-# Load catppuccin
-run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
-
-# set -g window-status-format "#[fg=white,bg=colour236] #I #{b:pane_current_path} (#{pane_current_command}) #[default]"
+set -g window-status-format "#[fg=white,bg=colour236] #I #{b:pane_current_path} (#{pane_current_command}) #[default]"
 set -g window-status-format "#[fg=white,bg=colour236] #I (#{pane_current_command}) #[default]"
+set -g status-bg "#2e2e2e"
 
 # For active window
-# set -g window-status-current-format "#[fg=black,bg=colour217] #I #{b:pane_current_path} (#{pane_current_command}) #[default]"
-set -g window-status-current-format "#[fg=black,bg=colour217] #I (#{pane_current_command}) #[default]"
-# For TPM, instead use `run ~/.tmux/plugins/tmux/catppuccin.tmux`
-
-# Make the status line pretty and add some modules
+set -g window-status-current-format "#[fg=black,bg=#ffffff] #I #{b:pane_current_path} (#{pane_current_command}) #[default]"
+set -g window-status-current-format "#[fg=black,bg=#62bcc6] #I (#{pane_current_command}) #[default]"
 
 set -g status-right-length 100
 set -g status-left-length 100
-set -g status-left "[#S  ]"
-set -g status-right '%H:%M |'
+set -g status-left "[  #S ]"
+set -g status-right ' %H:%M |'
 set -g status-justify centre
 set -ag status-right " #{?client_prefix, 󰛨 , 󰌶 }"
-set -ag status-right " | #(uptime -p)"
-# set -ag status-right "#{E:@catppuccin_status_uptime}"
-
-run '~/.tmux/plugins/tpm/tpm'
-
-
-
-NOTE: newest version 11/26/2025
-
-set -g default-terminal "tmux-256color"
-set -as terminal-overrides ',xterm-256color:RGB'
-
-#set -g default-terminal "screen-256color"
-#set -g terminal-overrides "xterm-256color:Tc"
-
-bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -selection clipboard -in"
-bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "xclip -selection clipboard -in"
-
-set -g prefix C-Space
-unbind C-b
-bind C-Space send-prefix
-set -g mouse on
-
-set-option -g status-position top 
-
-bind-key h select-pane -L
-bind-key j select-pane -D
-bind-key k select-pane -U
-bind-key l select-pane -R
-
-# set -g @plugin 'tmux-plugins/tpm'
-# set -g @plugin 'tmux-plugins/tmux-battery'
-
-set -g @catppuccin_flavor "mocha"
-set -g @catppuccin_window_status_style "slanted"
-# set -g @catppuccin_status_modules_right "session date_time battery"
-
-# Load catppuccin
-run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
-# set -g window-status-format "#[fg=white,bg=colour236] #I #{b:pane_current_path} (#{pane_current_command}) #[default]"
-set -g window-status-format "#[fg=white,bg=colour236] #I (#{pane_current_command}) #[default]"
-
-# For active window
-# set -g window-status-current-format "#[fg=black,bg=colour217] #I #{b:pane_current_path} (#{pane_current_command}) #[default]"
-set -g window-status-current-format "#[fg=black,bg=colour217] #I (#{pane_current_command}) #[default]"
-# For TPM, instead use `run ~/.tmux/plugins/tmux/catppuccin.tmux`
-
-# Make the status line pretty and add some modules
-
-set -g status-right-length 200
-set -g status-left-length 100
-set -g status-left "  "
-set -g status-right "%H:%M  "
-set -g status-justify centre
-# set -g status-left "#[bg=black,fg=white] #{b:pane_current_path} #[default]"
-# set -g status-right "#{E:@catppuccin_status_application}"
-
-set -ag status-right "#{E:@catppuccin_status_session}"
-set -ag status-right "#{E:@catppuccin_status_uptime}"
-# set -agF status-right "#{E:@catppuccin_status_battery}"
-
-run '~/.tmux/plugins/tpm/tpm'
-
-
-
+set -ag status-right " |  #(uptime -p) "
 
 
 ------- this bottom file is for the minumal alacritty gray terminal no plugins 
