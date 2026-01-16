@@ -1,5 +1,6 @@
 ----------- this one is for wsl and none off these now use plugins 
 
+# some cool color #99c379
 set -g default-terminal "screen-256color"
 set -g terminal-overrides "xterm-256color:Tc"
 
