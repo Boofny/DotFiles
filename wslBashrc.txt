@@ -2,21 +2,10 @@
 # ~/.bashrc
 #
 
-function cdIntoFZFDir(){
-  dir=$1
-  if [[ "$dir" == "" ]]; then 
-    choice=$(fd . ./$dir/ -t d --exclude go | fzf) && cd $choice 
-    return 1
-  fi
-  choice=$(fd . ./$dir/ -t d --exclude node_modules | fzf) && cd $choice
-  return 0
-}
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-alias cdf=cdIntoFZFDir
-alias cdg='choice=$(fd . ~/gitThings/ -t d --exclude node_modules | fzf) && cd $choice'
-alias fg='bash ~/commands/fuzzy.sh'
+alias cdf='source ~/gitThings/DotFiles/scripts/cdFuzz.sh'
+alias fg='bash ~/gitThings/DotFiles/scripts/fuzzy.sh'
 alias ..='cd ..'
 alias c='clear'
 alias cls='clear'
@@ -39,6 +28,7 @@ alias dockStat='sudo systemctl status docker.service'
 PS1='[\u@\h \W]\$ '
 eval "$(starship init bash)"
 export EDITOR=nvim
+export MAINWORKDIR="$HOME/gitThings/"
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
