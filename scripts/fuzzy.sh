@@ -49,7 +49,7 @@ fi
 
 if $y_flag; then # if y flag (the yes) flag is used bypass comfirmation option
   choice=$( fd . "$MAINWORKDIR" --type d --exclude node_modules | fzf ) || exit 0
-  # cd $choice || exit 1
+  cd $choice || exit 1
   sessionName=$(basename $PWD)
   tmux new-session -A -d -s "$sessionName" -c "$choice" # makes tmux session call dev 
   tmux attach -t "$sessionName" # now we attach into the made tmux session
