@@ -2,20 +2,20 @@
 
 #source this script
 
-# t_flag=false # tmux flag
-#
-# while getopts 't' flag; do # check flag status
-#   case "${flag}" in
-#     t) t_flag=true;;
-#     *) return 1
-#   esac
-# done
-#
-echo "$t_flag"
+OPTIND=1
 
-dir=$1
+t_flag="" # tmux flag
 
-if  [[ "$2" == "-t" ]]; then
+while getopts 't:' flag; do # check flag status
+  case "${flag}" in
+    t) t_flag="$OPTARG";;
+    *) return 1
+  esac
+done
+
+
+if  [[ "$t_flag" == "" ]]; then
+  echo "$t_flag"
   choice=$( fd . "$dir" --type d --exclude node_modules | fzf )
   sessionName=$(basename $PWD)
   tmux new-session -A -d -s "$sessionName" -c "$choice" # makes tmux session call dev 
