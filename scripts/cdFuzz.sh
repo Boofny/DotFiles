@@ -29,7 +29,7 @@ if [[ "$dir" == "" ]]; then
   choice=$( fd . ./ --type d --exclude go -E node_modules | fzf ) && cd $choice || return 1
   return 0
 else
-  choice=$( fd . ./$dir/ --type d --exclude go -E node_modules | fzf ) && cd $choice || return 1
+  choice=$( fd . "$dir" --type d --exclude go -E node_modules | fzf ) && cd $choice || return 1
   return 0
 fi
   
