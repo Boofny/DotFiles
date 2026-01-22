@@ -41,12 +41,12 @@ fi
 
 if $p_flag; then 
   choice=$( fd . "$MAINWORKDIR" --type d --exclude go -E node_modules | 
-  \fzf --style full --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'Vim'
+  \fzf --style full --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'FG'
   ) && cd $choice || exit 1
   sessionName=$(basename $PWD)
 
   file=$(fd . ./ --type file --exclude node_modules -E go -E .git | 
-  fzf --style full --preview 'bat --color=always --style=numbers --line-range=:500 {}' --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'Vim') ||
+  fzf --style full --preview 'bat --color=always --style=numbers --line-range=:500 {}' --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'FG') ||
   exit 0
   tmux new-session -A -d -s "$sessionName" -c "$choice" # makes tmux session call dev 
   tmux send-keys -t "$sessionName" ""$EDITOR" \"$file\"" C-m # runs command in tmux session windows end C-m enters it 
@@ -59,7 +59,7 @@ fi
 
 if $y_flag; then # if y flag (the yes) flag is used bypass comfirmation option
   choice=$( fd . "$MAINWORKDIR" --type d --exclude go -E node_modules | 
-  \fzf --style full --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'Vim'
+  \fzf --style full --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'FG'
   ) && cd $choice || exit 1
   sessionName=$(basename $PWD)
   tmux new-session -A -d -s "$sessionName" -c "$choice" # makes tmux session call dev 
@@ -68,7 +68,7 @@ if $y_flag; then # if y flag (the yes) flag is used bypass comfirmation option
 else
 
   choice=$( fd . "$MAINWORKDIR" --type d --exclude go -E node_modules | 
-  \fzf --style full --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'Vim'
+  \fzf --style full --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'FG'
   ) || exit 1
 
   printf "%b" "Make tmux session in (${GREEN}$choice${NC})? [y/n]"
