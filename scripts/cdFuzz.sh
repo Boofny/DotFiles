@@ -34,7 +34,7 @@ if [[ "$dir" == "" ]]; then
   ) && cd $choice || return 1
   return 0
 else
-  choice=$( fd . ./ --type d --exclude go -E node_modules | 
+  choice=$( fd . "$1" --type d --exclude go -E node_modules | 
   \fzf --style full --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'CDF'
   ) && cd $choice || return 1
   return 0
