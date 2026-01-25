@@ -46,7 +46,7 @@ if $p_flag; then
   sessionName=$(basename $PWD)
 
   file=$(fd . ./ --type file --exclude node_modules -E go -E .git | 
-  fzf --style full --preview 'bat --color=always --style=numbers --line-range=:500 {}' --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'FG') ||
+  fzf --style full --preview 'bat --color=always --style=numbers --line-range=:50 {}' --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'FG') ||
   exit 0
   tmux new-session -A -d -s "$sessionName" -c "$choice" # makes tmux session call dev 
   tmux send-keys -t "$sessionName" ""$EDITOR" \"$file\"" C-m # runs command in tmux session windows end C-m enters it 

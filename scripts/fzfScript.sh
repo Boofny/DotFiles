@@ -13,7 +13,7 @@ while getopts 'p' flag; do # check flag status
 done
 
 if $preview_flag ; then
-  fzf --style full --preview 'bat --color=always --style=numbers --line-range=:500 {}' --margin=0%,0% --layout reverse --border --color 'border:#89b5fa' --border-label 'FZF' || exit 1
+  fzf --style full --preview 'bat --color=always --style=numbers --line-range=:50 {}' --margin=0%,0% --layout reverse --border --color 'border:#89b5fa' --border-label 'FZF' || exit 1
   exit 0
 fi
 
