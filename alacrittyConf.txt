@@ -5,6 +5,12 @@
 program = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 args = ["-NoLogo"]
 
+// this fixes the tmux keybinding
+[[keyboard.bindings]]
+key = "Space"
+mods = "Control"
+chars = "\u0000"
+
 [window]
 startup_mode = "Windowed"
 decorations = "full"
