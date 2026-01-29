@@ -2,6 +2,7 @@
 
 #source this script
 
+# TODO: need to make the -t flag not take an argument just make it bool and tmux whererver the user choses 
 OPTIND=1
 
 t_flag="" # tmux flag
