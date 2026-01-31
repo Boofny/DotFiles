@@ -2,27 +2,23 @@
 
 #source this script
 
-# TODO: need to make the -t flag not take an argument just make it bool and tmux whererver the user choses 
-OPTIND=1
+t_flag=false # tmux flag
 
-t_flag="" # tmux flag
-
-while getopts 't:' flag; do # check flag status
+while getopts 't' flag; do # check flag status
   case "${flag}" in
-    t) t_flag="$OPTARG";;
+    t) t_flag=true;;
     *) return 1
   esac
 done
 
 echo "$t_flag"
 
-if [[ "$t_flag" != "" ]]; then #if t flag is empty that means to things one that it could be not chosen or two that the user did use -t but did not enter a dir name
-  choice=$( fd . ./"$t_flag" --type d --exclude go -E node_modules | 
+if $t_flag; then #if t flag is empty that means to things one that it could be not chosen or two that the user did use -t but did not enter a dir name
+  choice=$( fd . ./ --type d --exclude go -E node_modules | 
   \fzf --style full --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'CDF'
   ) && cd $choice || return 1
   sessionName=$(basename $PWD)
   tmux new-session -A -d -s "$sessionName" # makes tmux session call dev 
-  # tmux send-keys -t "$sessionName" ""$EDITOR" \"$file\"" C-m # runs command in tmux session windows end C-m enters it 
   tmux attach -t "$sessionName" # now we attach into the made tmux session
   return 0
 fi
