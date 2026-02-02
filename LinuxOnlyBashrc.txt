@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+alias news='tmux new -s $(basename $PWD)'
+alias stat='date +"%A %B %d %I:%M %p" && upower -b | rg perc && upower -b | grep time'
 alias dysk='dysk -a'
 alias ls='lsd'
 alias lsa='lsd -a'
@@ -28,9 +30,10 @@ alias dockStat='sudo systemctl status docker.service'
 alias esp='source ~/commands/espStruct.sh'
 alias fg='bash ~/gitThigns/DotFiles/scripts/fuzzy.sh'
 alias cdf='source ~/gitThigns/DotFiles/scripts/cdFuzz.sh'
-alias vim='bash ~/gitThigns/DotFiles/scripts/NvimScript.sh'
+alias vim='bash ~/gitThigns/DotFiles/scripts/vimer.sh'
 
 alias menu='xfce4-terminal --show-menubar'
+alias fzf='bash ~/gitThigns/DotFiles/scripts/fzfScript.sh'
 PS1='[\u@\h \W]\$ '
 eval "$(starship init bash)"
 export EDITOR=nvim
@@ -50,4 +53,5 @@ export MAINWORKDIR="/home/brandon/gitThigns/"
 
 export BAT_THEME="Catppuccin Mocha"
 
-alias fzf="fzf --style full --preview 'bat --color=always --style=numbers --line-range=:500 {}' --margin=10%,10% --layout reverse --border --border-label 'Find'"
+# alias fzf="fzf --style full --preview 'bat --color=always --style=numbers --line-range=:500 {}' --margin=10%,10% --layout reverse --border --border-label 'Find'"
+# alias fzf="fzf --style full --preview 'bat --color=always --style=numbers --line-range=:500 {}' --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'Find'"
