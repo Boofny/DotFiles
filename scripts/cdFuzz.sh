@@ -27,12 +27,12 @@
 dir="$1"
 if [[ "$dir" == "" ]]; then
   choice=$( fd . ./ --type d --exclude go -E node_modules | 
-  \fzf --style full --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'CDF'
+  \fzf --style full --margin=0%,0% --layout reverse --border --color 'border:#89b5fa' --border-label 'CDF'
   ) && cd $choice || return 1
   return 0
 else
   choice=$( fd . "$1" --type d --exclude go -E node_modules | 
-  \fzf --style full --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'CDF'
+  \fzf --style full --margin=0%,0% --layout reverse --border --color 'border:#89b5fa' --border-label 'CDF'
   ) && cd $choice || return 1
   return 0
 fi
