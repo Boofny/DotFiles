@@ -1,15 +1,23 @@
-set relativenumber
+set termguicolors
 syntax on
 nnoremap <space>w :w<CR>
 nnoremap <space>e :Vex<CR>
 nnoremap <space>l $
 nnoremap <space>h ^
+nnoremap <space>k gM
+nnoremap <space>t :vertical botright terminal<CR>
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
 set clipboard=unnamedplus
+set nowrap
 
+set cursorline
+set number
+set relativenumber
 set laststatus=2
 set tabstop=2
 set shiftwidth=2
 set clipboard=unnamedplus
 
-set cursorline
-colorscheme retrobox
+set background=dark
+colorscheme habamax
