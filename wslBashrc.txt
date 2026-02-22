@@ -4,6 +4,7 @@
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+alias go-new="bash ~/commands/goStruct.sh"
 alias cdf='source ~/gitThings/DotFiles/scripts/cdFuzz.sh'
 alias fg='bash ~/gitThings/DotFiles/scripts/fuzzy.sh'
 alias ..='cd ..'
@@ -13,10 +14,11 @@ alias ls='lsd'
 alias lsa='lsd -a'
 alias lst='lsd --tree'
 alias lsl='lsd -l'
-alias vi='nvim'
+alias locker='lazydocker'
+# alias vi='nvim'
 alias neo='fastfetch'
 alias grep='grep --color=auto'
-alias postStatus='sudo systemctl status postgresql'
+alias postStat='sudo systemctl status postgresql'
 alias postStart='sudo systemctl start postgresql'
 alias postStop='sudo systemctl stop postgresql'
 alias postUser='pgcli -U myuser -d mydb -h localhost'
@@ -24,6 +26,9 @@ alias postUser='pgcli -U myuser -d mydb -h localhost'
 alias dockStart='sudo systemctl start docker.service'
 alias dockStop='sudo systemctl stop docker.service'
 alias dockStat='sudo systemctl status docker.service'
+alias vim='bash ~/gitThings/DotFiles/scripts/vimer.sh'
+alias news='tmux new -s $(basename $PWD)'
+alias blt='date +"%A %B %d %I:%M %p" && acpi -b'
 
 PS1='[\u@\h \W]\$ '
 eval "$(starship init bash)"
@@ -37,4 +42,9 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+export BAT_THEME="Catppuccin Mocha"
 export PATH=$PATH:$(go env GOPATH)/bin
+
+# alias fzf="fzf --style full --preview 'bat --color=always --style=numbers --line-range=:500 {}' --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'FZF'"
+  alias fzf="bash ~/gitThings/DotFiles/scripts/fzfScript.sh"
