@@ -41,9 +41,12 @@ symbol = ""
 format = '[[$symbol](fg:#769ff0 bg:#212736)]($style)'
 
 [python]
-symbol = "󰌠"
-style = "bg:#212736"
-format = '[[ $symbol ](fg:#769ff0 bg:#212736)]($style)'
+symbol = " 󰌠 "
+format = '[[$symbol](fg:#ffffff)]($style)'
+detect_files = []
+detect_extensions = []
+detect_folders = []
+detect_env_vars = ["VIRTUAL_ENV", "CONDA_DEFAULT_ENV"]
 
 [golang]
 symbol = ""
