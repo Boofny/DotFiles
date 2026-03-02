@@ -26,6 +26,8 @@ packages=(
   tmux 
   starship
   curl
+	lsd
+	btop
 )
 
 sudo pacman -Syu --needed "${packages[@]}"
