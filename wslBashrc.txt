@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 alias go-new="bash ~/commands/goStruct.sh"
 alias cdf='source ~/gitThings/DotFiles/scripts/cdFuzz.sh'
-alias fg='bash ~/gitThings/DotFiles/scripts/fuzzy.sh'
+# alias fg='bash ~/gitThings/DotFiles/scripts/fuzzy.sh'
 alias ..='cd ..'
 alias c='clear'
 alias cls='clear'
@@ -15,7 +15,7 @@ alias lsa='lsd -a'
 alias lst='lsd --tree'
 alias lsl='lsd -l'
 alias locker='lazydocker'
-# alias vi='nvim'
+alias cb='bash ~/gitThings/DotFiles/scripts/cdbranch.sh'
 alias neo='fastfetch'
 alias grep='grep --color=auto'
 alias postStat='sudo systemctl status postgresql'
@@ -29,7 +29,9 @@ alias dockStat='sudo systemctl status docker.service'
 alias vim='bash ~/gitThings/DotFiles/scripts/vimer.sh'
 alias news='tmux new -s $(basename $PWD)'
 alias blt='date +"%A %B %d %I:%M %p" && acpi -b'
+alias load='source ~/gitThings/DotFiles/scripts/loadEnv.sh'
 
+alias blt='date +"%A %B %d %I:%M %p" && acpi -b'
 PS1='[\u@\h \W]\$ '
 eval "$(starship init bash)"
 export EDITOR=nvim

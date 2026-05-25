@@ -20,4 +20,8 @@ set shiftwidth=2
 set clipboard=unnamedplus
 
 set background=dark
-colorscheme habamax
+colorscheme catppuccin
+highlight Normal guibg=NONE
+highlight StatusLine guibg=#1e1e2e
+highlight Visual guibg=#275378
+highlight CursorLineNr guifg=#f15bb5
