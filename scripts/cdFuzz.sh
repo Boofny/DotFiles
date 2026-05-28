@@ -1,40 +1,49 @@
 #!/bin/bash
-
 #source this script
 
-# t_flag=false # tmux flag
-#
-# while getopts 't' flag; do # check flag status
-#   case "${flag}" in
-#     t) t_flag=true;;
-#     *) return 1
-#   esac
-# done
-
-# echo "$t_flag"
-
-# if $t_flag; then #if t flag is empty that means to things one that it could be not chosen or two that the user did use -t but did not enter a dir name
-#   choice=$( fd . ./ --type d --exclude go -E node_modules | 
-#   \fzf --style full --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'CDF'
-#   ) && cd $choice || return 1
-#   sessionName=$(basename $PWD)
-#   tmux new-session -A -d -s "$sessionName" # makes tmux session call dev 
-#   tmux attach -t "$sessionName" # now we attach into the made tmux session
-#   return 0
-# fi
-
 # fzf --style full --margin=10%,10% --layout reverse --border --color 'border:#89b5fa' --border-label 'Vim'
+
 dir="$1"
 if [[ "$dir" == "" ]]; then
+
   choice=$( fd . ./ --type d --exclude go -E node_modules | 
   \fzf --style full --margin=0%,0% --layout reverse --border --color 'border:#89b5fa' --border-label 'CDF'
   ) && cd $choice || return 1
-  return 0
+  git status
+
+  # if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  #   printf "\033[33m Git Pull? [y]: \033[0m"
+  #   read pull
+  #   if [[ "$pull" == "y" ]]; then 
+  #     printf "\033[32m Pulling...\033[0m"
+  #     git pull
+  #     return 0
+  #   fi
+  #
+  # else
+  #   return 1
+  # fi
+
 else
   choice=$( fd . "$1" --type d --exclude go -E node_modules | 
   \fzf --style full --margin=0%,0% --layout reverse --border --color 'border:#89b5fa' --border-label 'CDF'
   ) && cd $choice || return 1
-  return 0
+
+  git status
+  # if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  #
+  #   printf "\033[33m Git Pull? [y]: \033[0m"
+  #   read pull
+  #   if [[ "$pull" == "y" ]]; then 
+  #     printf "\033[31m Pulling...\033[0m"
+  #     git pull
+  #     return 0
+  #   fi
+  #
+  # else
+  #   return 1
+  # fi
+
 fi
   
 # choice=$( fd . ./$dir/ --type d --exclude go -E node_modules | fzf ) && cd $choice
