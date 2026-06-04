@@ -10,37 +10,21 @@ if [[ "$dir" == "" ]]; then
   \fzf --style full --margin=0%,0% --layout reverse --border --color 'border:#89b5fa' --border-label 'CDF'
   ) && cd $choice || return 1
 
-  # if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  #   printf "\033[33m Git Pull? [y]: \033[0m"
-  #   read pull
-  #   if [[ "$pull" == "y" ]]; then 
-  #     printf "\033[32m Pulling...\033[0m"
-  #     git pull
-  #     return 0
-  #   fi
-  #
-  # else
-  #   return 1
-  # fi
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+	  # printf "\033[H\033[2J"
+    printf "\033[33mDont forget to git pull!\033[0m"
+  fi
 
 else
+
   choice=$( fd . "$1" --type d --exclude go -E node_modules | 
   \fzf --style full --margin=0%,0% --layout reverse --border --color 'border:#89b5fa' --border-label 'CDF'
   ) && cd $choice || return 1
 
-  # if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  #
-  #   printf "\033[33m Git Pull? [y]: \033[0m"
-  #   read pull
-  #   if [[ "$pull" == "y" ]]; then 
-  #     printf "\033[31m Pulling...\033[0m"
-  #     git pull
-  #     return 0
-  #   fi
-  #
-  # else
-  #   return 1
-  # fi
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+	  # printf "\033[H\033[2J"
+    printf "\033[33mDont forget to git pull!\033[0m"
+  fi
 
 fi
   
