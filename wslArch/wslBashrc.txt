@@ -4,7 +4,8 @@
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-alias go-new="bash ~/commands/goStruct.sh"
+alias go-new="bash ~/gitThings/DotFiles/scripts/golangTools/goNew.sh"
+alias go-init="bash ~/gitThings/DotFiles/scripts/golangTools/goInit.sh"
 alias cdf='source ~/gitThings/DotFiles/scripts/cdFuzz.sh'
 # alias fg='bash ~/gitThings/DotFiles/scripts/fuzzy.sh'
 alias ..='cd ..'
@@ -15,6 +16,7 @@ alias lsa='lsd -a'
 alias lst='lsd --tree'
 alias lsl='lsd -l'
 alias locker='lazydocker'
+alias lgit='lazygit'
 alias cb='bash ~/gitThings/DotFiles/scripts/cdbranch.sh'
 alias neo='fastfetch'
 alias grep='grep --color=auto'
@@ -24,7 +26,7 @@ alias postStop='sudo systemctl stop postgresql'
 alias postUser='pgcli -U myuser -d mydb -h localhost'
 
 alias dockStart='sudo systemctl start docker.service'
-alias dockStop='sudo systemctl stop docker.service'
+alias dockStop='sudo systemctl stop docker docker.socket'
 alias dockStat='sudo systemctl status docker.service'
 alias vim='bash ~/gitThings/DotFiles/scripts/vimer.sh'
 alias news='tmux new -s $(basename $PWD)'
