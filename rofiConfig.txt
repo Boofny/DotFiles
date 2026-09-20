@@ -42,15 +42,19 @@ configuration {
 
 // # some cool color #99c379
 * {
-    // background:     #111014;
-    // background-alt: #111014;
+    background:     #111014;
+    background-alt: #111014;
+    foreground:     #BDB2FF;
+    selected:       #BDB2FF;
+
+    // foreground:     #99c379;
+    // selected:       #99c379;
+
     // foreground:     #a4e3d3;
     // selected:       #a4e3d3;
-    background:     #1e1e1e;
-    borderCol:      #99c379;
-    background-alt: #1e1e1e;
-    foreground:     #99c379;
-    selected:       #99c379;
+    // borderCol:      #99c379;
+    // background:     #1e1e1e;
+    // background-alt: #1e1e1e;
     active:         #639b96;
     urgent:         #a4e3d3;
 }

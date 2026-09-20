@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+# font pango:monospace 8 -- may change back
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -46,16 +46,16 @@ bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec i3-sensible-terminal --hide-menubar
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+shift+q kill
+
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
@@ -73,10 +73,17 @@ for_window [class=".*"] border none
 gaps inner 0
 gaps outer 0
 
-assign [class="brave"] workspace number 7
-bindsym $mod+b workspace number 7; exec --no-startup-id brave
-for_window [class="brave"] floating disable
-for_window [class="brave"] border none
+# class              border  background text    indicator child_border
+client.focused          #5e81ac #5e81ac #ffffff #88c0d0   #5e81ac
+client.unfocused        #3b4252 #2e3440 #d8dee9 #3b4252   #3b4252
+client.focused_inactive #434c5e #3b4252 #d8dee9 #434c5e   #434c5e
+client.urgent           #bf616a #bf616a #ffffff #bf616a   #bf616a
+
+focus_follows_mouse no
+# assign [class="brave"] workspace number 7
+bindsym $mod+b workspace number 7; exec --no-startup-id firefox
+for_window [class="firefox"] floating disable
+for_window [class="firefox"] border none
 
 # Cycle to the next workspace
 bindsym $mod+Tab workspace next
@@ -91,17 +98,21 @@ smart_borders on
 # A more modern dmenu replacement is rofi:
 bindsym $mod+space exec "rofi -modi drun,run -show drun"
 
-exec --no-startup-id xsetroot -solid "#002b36"
-#1a1a27
+bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/powermenu.sh
+
+# exec --no-startup-id xsetroot -solid "#002b36"
+exec --no-startup-id xsetroot -solid "#a39c9b"
+exec --no-startup-id xsetroot -solid "#575757"
+#575757
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
+bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
-bindsym $mod+l focus left
-bindsym $mod+h focus right
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -221,6 +232,7 @@ bindsym $mod+r mode "resize"
 bar {
     status_command i3status
     position top
+    mode dock 
     font pango:Hack Nerd Font 10
     colors {
         background #181818
