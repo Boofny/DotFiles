@@ -53,7 +53,7 @@ cat >> src/main.cpp <<EOF
 #include <iostream>
 #include "test.hpp"
 
-int main(){
+int main(int argc, char *argv[]){
   std::cout << "Hello world" << std::endl;
   Test::greet();
   return 0;
