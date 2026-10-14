@@ -1,5 +1,6 @@
 # /usr/bin/env bash
 
+# NOTE: when i eventually come back to this when i make some sort of lib in c++ and want to alter this command CMakeLists and include/<project_name> need to be alterd for name spacing like #include <json/json.h>
 baseDir=$(basename $PWD)
 firstChar="${baseDir:0:1}"
 
