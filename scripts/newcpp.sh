@@ -1,6 +1,5 @@
 # /usr/bin/env bash
 
-# NOTE: when i eventually come back to this when i make some sort of lib in c++ and want to alter this command CMakeLists and include/<project_name> need to be alterd for name spacing like #include <json/json.h>
 baseDir=$(basename $PWD)
 firstChar="${baseDir:0:1}"
 
@@ -16,13 +15,14 @@ mkdir ./$name
 cd "$name" || exit 1
 
 mkdir include 
+mkdir include/${name}
 mkdir src
 touch CMakeLists.txt
 touch .gitignore
 
 touch src/main.cpp
 touch src/test.cpp
-touch include/test.hpp
+touch include/${name}/test.hpp
 
 cat >> CMakeLists.txt <<'EOF'
 cmake_minimum_required(VERSION 3.16)
@@ -52,7 +52,7 @@ EOF
 
 cat >> src/main.cpp <<EOF
 #include <iostream>
-#include "test.hpp"
+#include "${name}/test.hpp"
 
 int main(int argc, char *argv[]){
   std::cout << "Hello world" << std::endl;
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]){
 
 EOF
 
-cat >> include/test.hpp <<EOF
+cat >> include/${name}/test.hpp <<EOF
 #pragma once
 
 namespace Test{
@@ -73,7 +73,7 @@ EOF
 
 cat >> src/test.cpp <<EOF
 #include <iostream>
-#include "test.hpp"
+#include "${name}/test.hpp"
 
 void Test::greet(){
   std::cout << "hello from testing hpp" << std::endl;
