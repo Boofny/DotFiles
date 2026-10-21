@@ -19,6 +19,7 @@ mkdir include/${name}
 mkdir src
 touch CMakeLists.txt
 touch .gitignore
+touch runScript.sh
 
 touch src/main.cpp
 touch src/test.cpp
@@ -85,11 +86,21 @@ cat >> .gitignore <<EOF
 build
 EOF
 
+cat >> runScript.sh <<EOF
+#! /usr/bin/env bash
+
+cmake --build build && ./build/cmd
+EOF
+
+chmod +x runScript.sh
+
 
 printf "\nStart by doing "
 echo ""
 printf "\n  cd ${name}"
 printf "\n  [cmake -S . -B build] to init cmake build once"
-printf "\n  cmake --build build"
-printf "\n  ./build/cmd"
+printf "\n  [cmake --build build]"
+printf "\n  [./build/cmd]"
+printf "\n  or just run ./runScript exe"
+
 
